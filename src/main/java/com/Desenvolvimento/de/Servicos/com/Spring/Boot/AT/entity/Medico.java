@@ -1,11 +1,14 @@
 package com.Desenvolvimento.de.Servicos.com.Spring.Boot.AT.entity;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Entity
 @Table(name = "medicos")
-@Data
+@Getter
+@NoArgsConstructor
 public class Medico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,4 +18,10 @@ public class Medico {
     private String especialidade;
     @OneToMany(mappedBy = "medico")
     private List<Consulta> consultas;
+
+    public Medico(String nome, String crm, String especialidade) {
+        this.nome = nome;
+        this.crm = crm;
+        this.especialidade = especialidade;
+    }
 }
